@@ -39,9 +39,7 @@
   > (완) int get_LCM(a, b) # 최소공배수 출력
   
   > (완) int[] Solve_Diophantine_Eq(a,b) # ax + by = d 디오판토스 방정식 일반해 배열 출력
-       (EEA의 x, y 각각 10개 출력)
-       (x : 0~9 index / y : 10~19 index)
-  
+       (EEA의 x, y 각각 10개 출력) (x : 0~9 index / y : 10~19 index)  
   > (완) int MOD(a, n) # a mod n 출력
   
   > (완) int Solve_linear_congruence(a,b,n) # ax = b (mod n) 을 만족하는 x 출력
