@@ -3,6 +3,7 @@
 
 * 해야하는 거
 - - -
+
   * CRT   
   * is_Prime(p)   
   * Factorization(n)   
@@ -20,6 +21,7 @@
 
 - - -
 * 다 한거
+  >
   > (완) int mul(a, b) # a*b 곱하기 값 출력
   
   > (완) int[] get_divisor(a) # 약수를 원소로 가지는 배열 출력
