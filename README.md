@@ -2,14 +2,14 @@
 2023년 2학기 웹 프로그래밍 프로젝트입니다.
 
 * 해야하는 거
-  > CRT
-  > is_Prime(p)
-  > Factorization(n)
-  > get_Gauss_power(p, n)
-  > Solve_ind_congruence(a,e,b,n)
-  > Solve_Quadratic_congruences(a,b,c,d,n)
-  > is_quadratic_residue(a,p)
-  > Quadratic Reciprocity Law(p,q)
+  > CRT   
+  > is_Prime(p)   
+  > Factorization(n)   
+  > get_Gauss_power(p, n)   
+  > Solve_ind_congruence(a,e,b,n)  
+  > Solve_Quadratic_congruences(a,b,c,d,n)  
+  > is_quadratic_residue(a,p)  
+  > Quadratic Reciprocity Law(p,q)  
 
 * 다 한거
   > (완) int mul(a, b) # a*b 곱하기 값 출력
