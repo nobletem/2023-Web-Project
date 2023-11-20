@@ -14,8 +14,8 @@
   * Quadratic Reciprocity Law(p,q)
 
 - - -
-* 필요하면
-  int SUMATION(min_i = 0,max_i, array n) # [min_i, max_i] 인덱스 만큼 배열 n의 원소들을 더함
+* 필요하면   
+  int SUMATION(min_i = 0,max_i, array n) # [min_i, max_i] 인덱스 만큼 배열 n의 원소들을 더함   
   int PRODUCT(min_i = 0l max_i, array n) #    [min_i, max_i] 인덱스 만큼 배열 n의 원소들을 곱함
   #
 
