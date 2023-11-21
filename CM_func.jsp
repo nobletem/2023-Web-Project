@@ -80,21 +80,45 @@ long k = test.get_order(a,b);
 out.print(k);
 out.print("<br>");
 
-long[] btest = test.primitive_root(a);
-int i = 0;
-while(i < btest.length){
-   out.print(" "+ btest[i]);
-   i++;
+/*
+if (test.primitive_root(a) == null) {
+	out.print("NONE! <br/>");
+	return;
 }
+*/
+int i;
+
+long[] btest = test.primitive_root(a);
+long[] table;
+if(btest==null){
+	out.print("ㅠㅠ<br>");
+	return;
+}
+else {
+	i = 0;
+	/* while(i < btest.length){
+	   out.print(" "+ btest[i]);
+	   i++;
+	} */	
+	for(long l_var:btest) {
+		out.print(" " + l_var);
+	}
+	table = test.generator_table(btest[0],a);
+}
+
 
 out.print("<br>"+ test.phi(test.phi(a)) + "<br>" );
 
 
-long[] table = test.generator_table(btest[0],a);
+if(table==null){
+	out.print("NONE!<br>");
+}
+else{
+	// ind_root a
+	out.print("ind_"+btest[0]+"a"+"<br>");
+}
 
-// ind_root a
-out.print("ind_"+btest[0]+"a"+"<br>");
-for( i = 1; i<= btest.length; i++){
+for( i = 1; i<= test.phi(a); i++){
 	out.print("	"+ i);
 }
 out.print("<br>");
@@ -102,13 +126,34 @@ out.print("<br>");
 // a
 i = 0;
 out.print("a<br>");
-while(i < btest.length){
-   out.print(" "+ btest[i]);
+while(i < test.phi(a)){
+   out.print(" "+ table[i]);
    i++;
 }
 out.print("<br>");
+out.print(test.ind(2,1,13)+" "+test.ind(2,2,13)+" "+test.ind(2,3,13)+" "+test.ind(2,4,13)+" "+test.ind(2,12,13)+"<br>");
 
+btest = test.Solve_ind_congruence(3,4,5,11);
 
+if(btest == null){
+	out.print("ㅠㅠ<br>");
+}
+else{
+	i = 0;
+	out.print("<br>");
+	while(i < btest.length){
+	   out.print(" "+ btest[i]);
+	   i++;
+	}
+}
+
+int q = test.Quadratic_residue(13, 17);
+
+out.print("<br>"+q);
+
+q = test.Quadratic_Reciprocity_Law(13,17);
+
+out.print("<br>"+q);
 %>
 
 </body>
