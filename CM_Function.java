@@ -20,29 +20,6 @@ public class CM_Function {
    }
    
    // ===========================================*****
-   /*
-   public long[] get_divisor(long a){
-      long ind = (long)Math.sqrt((double)a);
-      List<Long> L_data = new ArrayList<Long>();
-      
-      long i;
-      for (i = 1; i <= ind; i++) {
-         if (a % i == 0) {
-            L_data.add(i);
-         }
-      }
-      for (i = L_data.size()-1; i>-1; i--) {
-    	  L_data.add((long)(a/L_data.get((int)i)));
-      }
-      
-      
-      long[] A_data = L_data.stream()
-                .mapToLong(k -> k)
-                .toArray();
-      
-      return A_data;
-   }
-   */
    public long[] get_divisor(long a){
 	      long i;
 	      List<Long> L_data = new ArrayList<Long>();
@@ -292,7 +269,6 @@ public class CM_Function {
    public long inverse(long a, long n)
    {
        if(GCD(a,n) != 1){
-           // NOT_DISJOINT();
            return 0;
        }
        return RtoL(a,phi(n)-1,n);
@@ -358,6 +334,10 @@ public class CM_Function {
 			   L_data.add(disj[i]);
 		   }
 	   }
+	   
+	   if(L_data.isEmpty()) {
+		   return null;
+	   }
 	   long[] A_data = L_data.stream()
                .mapToLong(l -> l)
                .toArray();
@@ -365,8 +345,33 @@ public class CM_Function {
 	   return A_data;
    }
    
+   public long get_one_primitive_root(long n)
+   {
+	   long[] disj = disjoint_set(n);
+	   long phi = disj.length;
+	   for(int i = 0; i < phi; i++) {
+		   if(get_order(disj[i],n)==phi) {
+			   return disj[i];
+		   }
+	   }
+	   return -1;
+   }
+   
+   public long ind(long r, long a, long n) { // O(phi(n)*log n)
+	   long phi = phi(n);
+	   for(long i = 1; i <= phi; i++) {
+		   if(mod_pow(r,i,n) == a) {
+			   return i; // ind a
+		   }
+	   }
+	   return -1;
+   }
+   
    public long[] generator_table(long root, long n) // a 
    {
+	   if(get_one_primitive_root(n)==-1) {
+		   return null;
+	   }
 	   List<Long> L_data = new ArrayList<Long>();
 	   for(int i = 1; i <= phi(n); i++) {
 		   L_data.add(mod_pow(root, i, n));
@@ -377,6 +382,42 @@ public class CM_Function {
                .toArray();
       
 	   return A_data;
+   }
+   
+   public long[] Solve_ind_congruence(long a,long e,long b,long n)
+   {
+	   long root = get_one_primitive_root(n);
+	   long phi = phi(n);
+	   
+	   if((root == -1)||(GCD(a,n)!=1)||(GCD(b,n)!= 1)) {
+		   return null;
+	   }
+	   // ind a + e*ind x = ind b (mod phi(n))
+	   
+	   long[] ind_x = Solve_linear_congruence(e, mod((ind(root,b,n)-ind(root,a,n)),phi),phi);
+	   if(ind_x == null) {
+		   return null;
+	   }
+	   long[] x = new long[ind_x.length];
+	   
+	   for(int i = 0; i < ind_x.length; i++) {
+		   x[i] = mod_pow(root,ind_x[i],n);
+	   }
+	   return x;
+   }
+   
+   public int Quadratic_residue(long a, long p) {
+	   if(GCD(a,p) != 1||p==2) {
+		   return 0;
+	   }
+	   
+	   return (RtoL(a, (p-1)>>1, p)==1)? 1 : -1;
+   }
+   
+   public int Quadratic_Reciprocity_Law(long p, long q)
+   {
+	   //if(!(is_Prime(p))||!(is_Prime(q)))return 0;
+	   return Quadratic_residue(p,q)* Quadratic_residue(q,p);
    }
    
 }
