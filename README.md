@@ -3,12 +3,9 @@
 
 
 * ### 해야하는 거
-- - -
-  * CRT   
-  * is_Prime(p)   
+- - -  
   * Factorization(n)   
-  * get_Gauss_power(p, n)   
-  * Solve_ind_congruence(a,e,b,n)  
+  * get_Gauss_power(p, n)     
   * Solve_Quadratic_congruences(a,b,c,d,n)  
   * is_quadratic_residue(a,p)  
   * Quadratic Reciprocity Law(p,q)
@@ -50,10 +47,15 @@
   > (완) int Sum_divisor(n) # n의 약수들의 합, sigma(n)
   
   > (완) int get_phi(n) # phi(n)값 계산 후 출력
+  
+  > (완) Solve_ind_congruence(a,e,b,n)
 
   > (완)int get_order(a,n) mod n에 대한 a의 위수 출력 
 
   > (완)int get_primitive_root(n) mod n의 원시근들 모두 출력
 
   > (완)void generator_table(g,n,array n) mod n의 원시근 g를 통해 생성되는 집합(결국 (Z/nZ)*)과 각각의 지수(indice)를 출력
+
+  >  (완) CRT
+  > (완) is_Prime(p) 
   
