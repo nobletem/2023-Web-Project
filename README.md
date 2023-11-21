@@ -7,8 +7,6 @@
   * Factorization(n)   
   * get_Gauss_power(p, n)     
   * Solve_Quadratic_congruences(a,b,c,d,n)  
-  * is_quadratic_residue(a,p)  
-  * Quadratic Reciprocity Law(p,q)
 
 - - -
 * 필요하면 
@@ -57,6 +55,7 @@
   > (완)void generator_table(g,n,array n) mod n의 원시근 g를 통해 생성되는 집합(결국 (Z/nZ)*)과 각각의 지수(indice)를 출력
 
   >  (완) CRT
-  
+  >  is_quadratic_residue(a,p)   
+  >  Quadratic Reciprocity Law(p,q)   
   >  (완) is_Prime(p) 
   
