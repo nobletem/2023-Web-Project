@@ -3,217 +3,318 @@ package T_pro;
 import java.util.*;
 
 public class CM_Function {
-   
-   // ===========================================*****
-   public long mul(long a, long b){
-      return (a * b);
-   }
-   
-   // ===========================================*****
-   public long mod(long a, long n){
-      
-      if (a % n < 0) {
-         return ((a % n) + n);
-      }
+	
+	// ===========================================*****
+	public long mul(long a, long b){
+		return (a * b);
+	}
+	
+	// ===========================================*****
+	public long mod(long a, long n){
+		
+		if (a % n < 0) {
+			return ((a % n) + n);
+		}
 
-      return a % n;
-   }
-   
-   // ===========================================*****
-   public long[] get_divisor(long a){
-	      long i;
-	      List<Long> L_data = new ArrayList<Long>();
-	      
-	      for (i = 1; i <= a; i++) {
-	         if (a % i == 0) {
-	            L_data.add(i);
-	         }
-	      }
-	       long[] A_data = L_data.stream()
-	                .mapToLong(k -> k)
-	                .toArray();
-	      
-	      return A_data;
-	   }
+		return a % n;
+	}
+	
+	// ===========================================*****
+	public long[] get_divisor(long a){
+		long i;
+		List<Long> L_data = new ArrayList<Long>();
+		
+		for (i = 1; i <= a; i++) {
+			if (a % i == 0) {
+				L_data.add(i);
+			}
+		}
+	    long[] A_data = L_data.stream()
+                .mapToLong(k -> k)
+                .toArray();
+		
+		return A_data;
+	}
+	
+	// ===========================================*****
+	public long Sum_divisor(long a) {
+		long sum = 0;
+		long[] n;
+		n = get_divisor(a);
+		
+		for (int i = 0; i < n.length; i++) {
+			sum += n[i];
+		}
+		
+		return sum;
+	}
+	
+	// ===========================================*****
+	public long[] get_division(long a, long b){
+		long tmp;
+		long[] res = new long[2];
+		if (a < b) {
+			tmp = a;
+			a = b;
+			b = tmp;
+		}
+		
+		res[0] = (a / b);
+		res[1] = (a % b);
+		
+		if (res[1] < 0) {
+			res[0]--;
+			res[1] += b;
+		}
+		return res;		
+	}	
+	
+	// ===========================================*****
+	public boolean get_divisable(long a, long b){
+		long tmp;
+		if (a < b) {
+			tmp = a;
+			a = b;
+			b = tmp;
+		}
+		
+		if ((a % b) == 0){
+			return true;
+		}
+		return false;
+	}
+	
+	// ===========================================*****
+	public long GCD(long a, long b) {
+	    if (b == 0) {
+	        return a;
+	    } else {
+	        return GCD(b, a % b);
+	    }
+	}
+	
+	// ===========================================*****
+	public long get_LCM(long a, long b){
+		a = Math.abs(a);
+		return ((a * b) / GCD(a, b));
+	}
+	
+	// ===========================================*****
+	public boolean is_relatively_prime(long a, long b){
+		long t_gcd = GCD(a, b);
+		if (t_gcd == 1) {
+			return true;
+		}
+		return false;
+	}
 
-   // ===========================================*****
-   public long Sum_divisor(long a) {
-      long sum = 0;
-      long[] n;
-      n = get_divisor(a);
-      
-      for (int i = 0; i < n.length; i++) {
-         sum += n[i];
-      }
-      
-      return sum;
-   }
-   
-   // ===========================================*****
-   public long[] get_division(long a, long b){
-      long tmp;
-      long[] res = new long[2];
-      if (a < b) {
-         tmp = a;
-         a = b;
-         b = tmp;
-      }
-      
-      res[0] = (a / b);
-      res[1] = (a % b);
-      
-      if (res[1] < 0) {
-         res[0]--;
-         res[1] += b;
-      }
-      return res;      
-   }   
-   
-   // ===========================================*****
-   public boolean get_divisable(long a, long b){
-      long tmp;
-      if (a < b) {
-         tmp = a;
-         a = b;
-         b = tmp;
-      }
-      
-      if ((a % b) == 0){
-         return true;
-      }
-      return false;
-   }
-   
-   // ===========================================*****
-   public long GCD(long a, long b) {
-       if (b == 0) {
-           return a;
-       } else {
-           return GCD(b, a % b);
-       }
-   }
-   
-   // ===========================================*****
-   public long get_LCM(long a, long b){
-      a = Math.abs(a);
-      return ((a * b) / GCD(a, b));
-   }
-   
-   // ===========================================*****
-   public boolean is_relatively_prime(long a, long b){
-      long t_gcd = GCD(a, b);
-      if (t_gcd == 1) {
-         return true;
-      }
-      return false;
-   }
+	// ===========================================*****
+	public long[] Extended_Euclid(long a, long b){
+		long tmp, q, r = 1;
+		long x1, x2, y1, y2;
+		long tmp_a, tmp_b, tmp_x, tmp_y; 
+		long[] QR = new long[2];
+		long[] res = new long[3];
 
-   // ===========================================*****
-   public long[] Extended_Euclid(long a, long b){
-      long tmp, q, r = 1;
-      long x1, x2, y1, y2;
-      long tmp_a, tmp_b, tmp_x, tmp_y; 
-      long[] QR = new long[2];
-      long[] res = new long[3];
+		tmp_a = Math.abs(a);
+		tmp_b = Math.abs(b);
+		if (tmp_a < tmp_b) {
+			tmp = tmp_a;
+			tmp_a = tmp_b;
+			tmp_b = tmp;
+		}
+		
+		x1 = y2 = 1;
+		x2 = y1 = 0;
+		
+		while(r != 0) {
+			QR = get_division(tmp_a, tmp_b);
+			q = QR[0];
+			r = QR[1];
+			tmp_a = tmp_b;
+			tmp_b = r;
+			
+			tmp_x = x1 - (x2 * q);
+			tmp_y = y1 - (y2 * q);
+			x1 = x2;
+			x2 = tmp_x;
+			y1 = y2;
+			y2 = tmp_y;
+		}			
+		
+		if (a < 0) {
+			x1 = -x1;
+		}
+		if (b < 0) {
+			y1 = -y1;
+		}
+		
+		if (Math.abs(a) < Math.abs(b)) {
+			res[0] = y1;
+			res[1] = x1;
+			res[2] = tmp_a;
+		}
+		else {
+			res[0] = x1;
+			res[1] = y1;
+			res[2] = tmp_a;
+		}
+		
+		return res;
+	}
+	
+	// ===========================================*****
+	public long[] Solve_Diophantine_Eq(long a, long b) {
+		long[] EEA = new long[3];
+		int i;
+		long x0, y0, gcd;
+		
+		List<Long>[] Dio = new ArrayList[2];
+		for (i = 0; i < 2; i++) {
+			Dio[i] = new ArrayList<Long>();
+		}
+		
+		EEA = Extended_Euclid(a, b);
+		x0 = EEA[0]; // 절댓값: a > b -> x0=eea_x, y0=eea_y
+		y0 = EEA[1]; // 절댓값: a < b -> x0=eea_y, y0=eea_x
+		gcd = EEA[2];
 
-      tmp_a = Math.abs(a);
-      tmp_b = Math.abs(b);
-      if (tmp_a < tmp_b) {
-         tmp = tmp_a;
-         tmp_a = tmp_b;
-         tmp_b = tmp;
-      }
-      
-      x1 = y2 = 1;
-      x2 = y1 = 0;
-      
-      while(r != 0) {
-         QR = get_division(tmp_a, tmp_b);
-         q = QR[0];
-         r = QR[1];
-         tmp_a = tmp_b;
-         tmp_b = r;
-         
-         tmp_x = x1 - (x2 * q);
-         tmp_y = y1 - (y2 * q);
-         x1 = x2;
-         x2 = tmp_x;
-         y1 = y2;
-         y2 = tmp_y;
-      }   
-      
-      res[0] = x1;
-      res[1] = y1;
-      res[2] = tmp_a;
-      return res;
-   }
-   
-   // ===========================================*****
-   public long[] Solve_Diophantine_Eq(long a, long b) {
-      long[] EEA = new long[3];
-      int i;
-      long x0, y0, gcd;
-      a = Math.abs(a);
-      b = Math.abs(b);
-      
-      List<Long>[] Dio = new ArrayList[2];
-      for (i = 0; i < 2; i++) {
-         Dio[i] = new ArrayList<Long>();
-      }
-      
-      EEA = Extended_Euclid(a, b);
-      x0 = EEA[0];
-      y0 = EEA[1];
-      gcd = EEA[2];
-      
-      
-      if (a > b) {
-         for (i = -4; i <= 5; i++) {
-            Dio[0].add(x0 + (b / gcd) * i);
-            Dio[1].add(y0 - (a / gcd) * i);
-         }
-      }
-      else if (a < b) {
-         for (i = -4; i <= 5; i++) {
-            Dio[1].add(x0 + (a / gcd) * i);
-            Dio[0].add(y0 - (b / gcd) * i);
-         }
-      }
-      
-       long[] res_Dio = new long[20];
-      for (i = 0; i < 10; i++) {
-         res_Dio[i] = Dio[0].get(i);
-      }
-      for (i = 0; i < 10; i++) {
-         res_Dio[i + 10] = Dio[1].get(i);
-      }
-       
-      return res_Dio;
-   }
-   
-   // ===========================================*****
-   public long[] Solve_linear_congruence(long a, long b, long n) {
-      long gcd = GCD(a, n);
-      long k = 0;
-      
-      List<Long> L_data = new ArrayList<Long>();
-      
-      if ((b % gcd) != 0) {
-         return null;
-      }
-      
-      k = mod(inverse(a/gcd,n/gcd) * b/gcd, n/gcd);
-      L_data.add(k);
-      for (int i = 1; i < gcd; i++) {
-         L_data.add(k + (n/gcd) * i);
-      }
-      
-       long[] A_data = L_data.stream()
+		for (i = -4; i <= 5; i++) {
+			Dio[0].add(x0 + (b / gcd) * i);
+			Dio[1].add(y0 - (a / gcd) * i);
+		}
+
+	    long[] res_Dio = new long[20];
+		for (i = 0; i < 10; i++) {
+			res_Dio[i] = Dio[0].get(i);
+		}
+		for (i = 0; i < 10; i++) {
+			res_Dio[i + 10] = Dio[1].get(i);
+		}
+	    
+		return res_Dio;
+	}
+	
+	// ===========================================*****
+	public long[] Solve_linear_congruence(long a, long b, long n) {
+		long gcd = GCD(a, n);
+		long k = 0;
+		System.out.print(a + ", " + b + ", " + n + "\n");
+		
+		List<Long> L_data = new ArrayList<Long>();
+		
+		if ((b % gcd) != 0) {
+			return null;
+		}
+		
+		k = mod(inverse(a/gcd,n/gcd) * b/gcd, n/gcd);
+		L_data.add(k);
+		for (int i = 1; i < gcd; i++) {
+			L_data.add(k + (n/gcd) * i);
+		}
+		
+	    long[] A_data = L_data.stream()
                 .mapToLong(l -> l)
                 .toArray();
-       
-      return A_data;
-   }
+	    
+		return A_data;
+	}
+	
+	// ===========================================*****
+	public long[] CRT(long[] a, long[] b, long[] m) {
+	    // mod m1, m2, ..., mn 들 중에서 겹칠 때와 혹은 서로소가 아닐 때의 조건 생각 필요;;
+	    long M = 1, temp_result = 0;
+	    long[] tmp;
+	    long[] res = new long[2];
+	    
+	    for (int i = 0; i < a.length; i++){
+	        tmp = Solve_linear_congruence(a[i], b[i], m[i]);
+	        b[i] = tmp[0];
+	        m[i] = m[i] / GCD(a[i], m[i]);
+	    }
+
+	    // pair 서로소가 아닌 경우, CRT_many 함수로 넘어감
+	    for (int i=0; i < m.length; i++) {
+	        for (int j=0; j < m.length; j++) {
+	            if (i==j) continue;
+	            if (GCD(m[i], m[j]) != 1) 
+	                return CRT_many(b, m); 
+	        }
+	    }
+
+	    for (int i = 0; i < a.length; i++) M *= m[i];
+	    
+	    for (int i = 0; i < a.length; i++){
+	        a[i] = M / m[i];    //a가 M1, M2, ..., Mn 배열로 재할당
+	        temp_result += (b[i] * a[i] * inverse(a[i], m[i]));
+	    }
+	    
+	    res[0] = mod(temp_result, M);
+	    res[1] = M;
+	    return res;
+	}
+	/**
+	 * 서로소가 아닐 때, 반복문 돌리기
+	 */
+	public long[] CRT_many(long[] b, long[] m) {
+		long[] res = new long[2];
+	    long a1 = b[0];
+	    long m1 = m[0];
+		
+	    if(b.length != m.length) return null; // throw new Exception("b 와 m의 사이즈가 달라요...");
+
+	    for(int i=1; i<b.length; i++) {
+	        long a2 = b[i];
+	        long m2 = m[i];
+	        long g = GCD(m1, m2);
+	        // if a1 % g != a2 % g : throw Exception
+	        
+	        long[] eea = Extended_Euclid(m1/g, m2/g);
+	        long lcm = get_LCM(m1, m2);
+	        long x = mod((a1*(m2/g)*eea[1] + a2*(m1/g)*eea[0]), lcm);
+	        a1 = x;
+	        m1 = lcm;
+	    }
+	    
+	    res[0] = a1;
+	    res[1] = m1;
+	    return res;
+	}
+	
+	// ===========================================*****
+	public boolean miller_rabin(long a, long n) {
+		long r = 0, x = 0;
+		long d = n-1;
+		
+		while(d % 2 == 0) {
+			r++;
+			d >>= 1;
+		}
+		
+		x = mod_pow(a, d, n);
+		if (x == 1 || x == n-1) return true;
+		
+		for (int i = 0; i < r - 1; i++) {
+			x = mod_pow(x, 2, n);
+			if (x == n-1) return true;
+		}
+		
+		return false;
+	}
+	public boolean is_Prime(long n) {
+		long[] p = { 2, 3, 5, 7, 11, 13, 17 };
+		
+		if (n <= 1) return false;
+		if (n == 2 || n == 3) return true;
+		if (n % 2 == 0) return false;
+		
+		for (int i = 0; i < p.length; i++) {
+			if (n == p[i]) return true;
+			if (!miller_rabin(p[i], n)) return false;
+		}
+		
+		return true;
+	}
    
    // ===========================================*****
    public int len_bin(long num)
