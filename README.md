@@ -4,8 +4,8 @@
 
 * ### 해야하는 거
 - - -  
-  * ~~ Factorization(n) ~~   
-  * ~~ get_Gauss_power(p, n) ~~     
+  * ~~Factorization(n)~~   
+  * ~~get_Gauss_power(p, n)~~     
 
 - - -
 * 필요하면(안필요 할 것 같아) 
@@ -55,7 +55,7 @@
 
   >  (완) CRT
   >  (완) is_quadratic_residue(a,p)   
-  >  (완) Quadratic Reciprocity Law(p,q)      
-  >  (완) is_Prime(p)
+  >  (완) Quadratic Reciprocity Law(p,q)         
+  >  (완) is_Prime(p)   
   >  (완) Solve_Quadratic_congruences(a,b,c,d,n)   
   
