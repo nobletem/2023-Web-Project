@@ -4,12 +4,11 @@
 
 * ### 해야하는 거
 - - -  
-  * Factorization(n)   
-  * get_Gauss_power(p, n)     
-  * Solve_Quadratic_congruences(a,b,c,d,n)  
+  * ~~ Factorization(n) ~~   
+  * ~~ get_Gauss_power(p, n) ~~     
 
 - - -
-* 필요하면 
+* 필요하면(안필요 할 것 같아) 
      * int SUMATION(min_i = 0,max_i, array n) # [min_i, max_i] 인덱스 만큼 배열 n의 원소들을 더함   
      * int PRODUCT(min_i = 0l max_i, array n) #    [min_i, max_i] 인덱스 만큼 배열 n의 원소들을 곱함
 
@@ -55,7 +54,8 @@
   > (완)void generator_table(g,n,array n) mod n의 원시근 g를 통해 생성되는 집합(결국 (Z/nZ)*)과 각각의 지수(indice)를 출력
 
   >  (완) CRT
-  >  is_quadratic_residue(a,p)   
-  >  Quadratic Reciprocity Law(p,q)   
-  >  (완) is_Prime(p) 
+  >  (완) is_quadratic_residue(a,p)   
+  >  (완) Quadratic Reciprocity Law(p,q)      
+  >  (완) is_Prime(p)
+  >  (완) Solve_Quadratic_congruences(a,b,c,d,n)   
   
